@@ -11,22 +11,27 @@ module.exports = function check(str, bracketsConfig) {
 
 		for(let j = 0; j < str.length; j++) {
 			let currentSymbol = str[j];
+      if(bracketsPair[currentSymbol] !== currentSymbol) {
+        
+        if(openBrackets.includes(currentSymbol)) {
+          stack.push(currentSymbol);
+        } else {
+          if(stack.length === 0) {
+            return false; 
+          }
+  
+          let topElement = stack[stack.length - 1];
+  
+          if (bracketsPair[currentSymbol] === topElement) {
+            stack.pop();
+          } else {
+            return false;
+          }
+        }
 
-			if(openBrackets.includes(currentSymbol)) {
-				stack.push(currentSymbol);
-			} else {
-				if(stack.length === 0) {
-					return false; 
-				}
-
-				let topElement = stack[stack.length - 1];
-
-				if (bracketsPair[currentSymbol] === topElement) {
-					stack.pop();
-				} else {
-					return false;
-				}
 			}
+
+			
 		}
 		
 		return stack.length === 0;
