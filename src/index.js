@@ -17,6 +17,7 @@ module.exports = function check(str, bracketsConfig) {
           stack.push(currentSymbol);
         } else {
           if(stack.length === 0) {
+            
             return false; 
           }
   
@@ -29,7 +30,8 @@ module.exports = function check(str, bracketsConfig) {
           }
         }
 
-			}
+			} 
+      
 
 			
 		}
